@@ -1,3 +1,67 @@
+<div id="mainCarousel" class="carousel slide mb-4" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#mainCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#mainCarousel" data-slide-to="1"></li>
+    <li data-target="#mainCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+     <%= image_tag "fashion_store.jpg", class: "d-block w-100", alt: "ファッションストア" %>
+      <div class="container">
+        <div class="carousel-caption text-left">
+          <h1>FASHION STORE</h1>
+          <p>最新のシャツ・スウェット・アフターウェア・パンツ・スニーカーをチェック。</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+     <%= image_tag "new_arrivals.jpg", class: "d-block w-100", alt: "新作" %>
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>NEW ARRIVALS</h1>
+          <p>今季の新作アイテムをピックアップ。</p>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-item">
+     <%= image_tag "sale_banner.jpg", class: "d-block w-100", alt: "セール" %>
+      <div class="container">
+        <div class="carousel-caption text-right">
+          <h1>SALE</h1>
+          <p>お得なプライスのアイテムもチェック。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#mainCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">前へ</span>
+  </a>
+  <a class="carousel-control-next" href="#mainCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">次へ</span>
+  </a>
+</div>
 
-<h1>FASHION STORE</h1>
-<p>ここに商品一覧が表示</p>
+<!-- 商品一覧部分 -->
+<div class="container">
+  <h2 class="mb-4">全商品一覧</h2>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-3 mb-4">
+        <div class="card h-100">
+          <% if product.image_url.present? %>
+            <%= image_tag product.image_url, class: "card-img-top" %>
+          <% else %>
+            <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="No image">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <p class="card-text">¥<%= product.price %></p>
+            <p class="card-text"><small class="text-muted"><%= product.category %></small></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
