@@ -55,7 +55,23 @@
        
     <!-- 右側：ログイン関連 -->
     <ul class="navbar-nav ml-auto mr-3">
+
       <% if user_signed_in? %>
+        <!-- カートアイコン -->
+        <li class="nav-item">
+          <%= link_to cart_path, class: "nav-link position-relative" do %>
+            🛒 カート
+            <% total_qty = current_user.cart_items.sum(:quantity) %>
+            <% if total_qty > 0 %>
+              <span class="badge badge-pill badge-danger"
+                    style="position: absolute; top: 0; right: 0; font-size: 0.7rem;">
+                <%= total_qty %>
+              </span>
+            <% end %>
+          <% end %>
+        </li>
+
+     
         <li class="nav-item">
           <%= link_to "マイページ", edit_user_registration_path, class: "nav-link" %>
         </li>
