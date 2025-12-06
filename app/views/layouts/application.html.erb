@@ -83,6 +83,23 @@
     </div>
   </nav>
  
+  <div class="container" style="margin-top: 80px;">
+  <% flash.each do |key, value| %>
+    <% bootstrap_class =
+      case key
+      when "notice" then "alert-success"
+      when "alert"  then "alert-danger"
+      else "alert-info"
+      end %>
+
+    <div class="alert <%= bootstrap_class %> alert-dismissible fade show" role="alert">
+      <%= value %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+</div>
   
   <div class="container" style="padding-top: 80px;">
     <%= yield %>
