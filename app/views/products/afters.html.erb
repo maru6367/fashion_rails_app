@@ -3,17 +3,24 @@
   <div class="row">
     <% @products.each do |product| %>
       <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <% if product.image_url.present? %>
-            <%= image_tag product.image_url, class: "card-img-top" %>
-          <% else %>
-            <img src="https://via.placeholder.com/400x300?text=No+Image" class="card-img-top" alt="No image">
-          <% end %>
-          <div class="card-body">
-            <h5 class="card-title"><%= product.name %></h5>
-            <p class="card-text">¥<%= product.price %></p>
+
+        <%= link_to product_path(product), class: "text-decoration-none text-reset" do %>
+          <div class="card h-100">
+            <% if product.image_url.present? %>
+              <%= image_tag product.image_url, class: "card-img-top" %>
+            <% else %>
+              <img src="https://via.placeholder.com/400x300?text=No+Image"
+                   class="card-img-top"
+                   alt="No image">
+            <% end %>
+
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text">¥<%= product.price %></p>
+            </div>
           </div>
-        </div>
+        <% end %>
+
       </div>
     <% end %>
   </div>
