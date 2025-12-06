@@ -1,0 +1,33 @@
+ja:
+  devise:
+    sessions:
+      signed_in: "ログインに成功しました。"
+      signed_out: "ログアウトしました。"
+      new:
+        sign_in: "ログイン"
+
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      updated: "アカウント情報を変更しました。"
+      destroyed: "アカウントを削除しました。"
+      new:
+        sign_up: "新規登録"
+
+      edit:
+        title: "マイページ（会員情報の編集）"
+        email: "メールアドレス"
+        password: "新しいパスワード（変更しない場合は空欄のまま）"
+        password_confirmation: "新しいパスワード（確認用）"
+        current_password: "現在のパスワード（確認のため必須）"
+        update: "変更を保存する"
+        cancel_account: "アカウント削除"
+        cancel_account_confirm: "本当に削除してもよろしいですか？この操作は取り消せません。"
+        back: "戻る"
+
+    passwords:
+      send_instructions: "パスワード再設定方法をメールで送信しました。"
+      updated: "パスワードが変更されました。"
+
+  errors:
+    messages:
+      not_saved: "%{count} 件のエラーにより保存できませんでした"
