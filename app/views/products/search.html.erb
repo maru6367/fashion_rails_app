@@ -1,0 +1,44 @@
+<div class="container" style="margin-top: 100px;">
+  <h2 class="mb-4">
+    検索結果
+    <% if @query.present? %>
+      ：「<%= @query %>」
+    <% end %>
+  </h2>
+
+  <% if @query.blank? %>
+    <p>キーワードを入力して検索してください。</p>
+  <% elsif @products.empty? %>
+    <p>該当する商品は見つかりませんでした。</p>
+  <% else %>
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col-md-3 mb-4">
+          <%= link_to product_path(product), class: "text-decoration-none text-reset" do %>
+            <div class="card h-100 shadow-sm">
+              <% if product.image_url.present? %>
+                <%= image_tag product.image_url, class: "card-img-top" %>
+              <% else %>
+                <img src="https://via.placeholder.com/400x300?text=No+Image"
+                     class="card-img-top"
+                     alt="No image">
+              <% end %>
+
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">¥<%= product.price %></p>
+                <p class="card-text">
+                  <small class="text-muted"><%= product.category %></small>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="mt-4">
+    <%= link_to "トップへ戻る", root_path, class: "btn btn-outline-secondary" %>
+  </div>
+</div>

@@ -44,7 +44,11 @@ Rails.application.routes.draw do
 
   resources :cart_items, only: [:create, :update, :destroy]
 
-  resources :products, only: :show
+  resources :products, only: [:show] do
+  collection do
+    get :search
+  end
+end
 
   resources :favorites, only: [:index, :create, :destroy]
 
