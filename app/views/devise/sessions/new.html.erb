@@ -1,0 +1,55 @@
+<div class="container" style="max-width: 500px; padding-top: 80px;">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+          <h4 class="mb-0">ログイン</h4>
+        </div>
+
+        <div class="card-body">
+          <p class="text-muted mb-4">
+            登録済みのメールアドレスとパスワードを入力してログインしてください。
+          </p>
+
+          <%= render "devise/shared/error_messages", resource: resource %>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <%= f.label :email, "メールアドレス" %>
+              <%= f.email_field :email,
+                                autofocus: true,
+                                autocomplete: "email",
+                                class: "form-control",
+                                placeholder: "example@example.com" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password, "パスワード" %>
+              <%= f.password_field :password,
+                                   autocomplete: "current-password",
+                                   class: "form-control" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group form-check">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, "ログイン状態を保持する", class: "form-check-label" %>
+              </div>
+            <% end %>
+
+            <div class="d-flex justify-content-between align-items-center mt-4">
+              <%= f.submit "ログインする", class: "btn btn-primary" %>
+              <span class="small text-muted">
+                パスワードをお忘れの場合は「パスワードをお忘れですか？」から再設定できます。
+              </span>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="card-footer text-center">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

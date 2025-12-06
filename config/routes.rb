@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ 
   get "products/index"
   get "products/shirts"
   get "products/sneakers"
@@ -25,4 +26,11 @@ Rails.application.routes.draw do
   get "/sweats",   to: "products#sweats"
   get "/afters",   to: "products#afters"
   get "/pants",    to: "products#pants"
+
+  devise_for :users
+
+  devise_scope :user do
+    post "guest_sign_in", to: "users/sessions#guest_sign_in"
+  end
+
 end

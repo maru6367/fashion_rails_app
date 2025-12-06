@@ -59,3 +59,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
 end
+
+gem 'devise'
