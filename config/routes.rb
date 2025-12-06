@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "favorites/index"
   get "carts/show"
   get "contacts/new"
   get "contacts/create"
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
 
   resources :products, only: :show
 
+  resources :favorites, only: [:index, :create, :destroy]
 
 
 end

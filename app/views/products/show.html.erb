@@ -71,13 +71,30 @@
           <p class="display-4">¥<%= @product.price %></p>
 
           <% if user_signed_in? %>
+  
             <%= button_to "カートに入れる",
                           cart_items_path(product_id: @product.id),
                           method: :post,
                           class: "btn btn-primary btn-lg btn-block mb-3" %>
+
+            <% if @favorited %>
+              <% favorite = Favorite.find_by(user_id: current_user.id, product_id: @product.id) %>
+              <%= button_to "お気に入りから外す",
+                            favorite_path(favorite),
+                            method: :delete,
+                            class: "btn btn-outline-danger btn-block" %>
+            <% else %>
+              <%= button_to "お気に入りに追加",
+                            favorites_path(product_id: @product.id),
+                            method: :post,
+                            class: "btn btn-outline-warning btn-block" %>
+            <% end %>
+
+
           <% else %>
+        
             <p class="text-muted">
-              カートに追加するにはログインが必要です。
+              カートやお気に入りに追加するにはログインが必要です。
             </p>
             <%= link_to "ログイン画面へ",
                         new_user_session_path,
