@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "carts/show"
   get "contacts/new"
   get "contacts/create"
  
@@ -37,6 +38,10 @@ Rails.application.routes.draw do
 
   get  "/contact", to: "contacts#new",    as: :contact
   post "/contact", to: "contacts#create"
+
+  resource :cart, only: :show
+
+  resources :cart_items, only: [:create, :update, :destroy]
 
 
 end
