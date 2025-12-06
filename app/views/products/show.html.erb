@@ -1,0 +1,104 @@
+<div class="container" style="margin-top: 100px;">
+  <div class="row">
+    <!-- 左側：画像スライダー -->
+    <div class="col-md-7">
+      <% if @product_images.present? %>
+        <div id="productCarousel" class="carousel slide mb-4" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <% @product_images.each_with_index do |_, index| %>
+              <li data-target="#productCarousel"
+                  data-slide-to="<%= index %>"
+                  class="<%= 'active' if index.zero? %>"></li>
+            <% end %>
+          </ol>
+
+          <div class="carousel-inner">
+            <% @product_images.each_with_index do |image_url, index| %>
+              <div class="carousel-item <%= 'active' if index.zero? %>">
+                <%= image_tag image_url,
+                              class: "d-block w-100",
+                              alt: @product.name %>
+              </div>
+            <% end %>
+          </div>
+
+          <% if @product_images.size > 1 %>
+            <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">前へ</span>
+            </a>
+            <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">次へ</span>
+            </a>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="card mb-4">
+          <img src="https://via.placeholder.com/800x600?text=No+Image"
+               class="card-img-top"
+               alt="No image">
+        </div>
+      <% end %>
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h3 class="card-title mb-3"><%= @product.name %></h3>
+          <p>
+            <span class="badge badge-secondary">
+              <%= @product.category %>
+            </span>
+          </p>
+
+          <% if @product.respond_to?(:description) && @product.description.present? %>
+            <p class="card-text">
+              <%= simple_format(@product.description) %>
+            </p>
+          <% else %>
+            <p class="text-muted">
+              商品の詳細説明は現在準備中です。
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右側：価格＋カート -->
+    <div class="col-md-5">
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h4 class="mb-3">価格</h4>
+          <p class="display-4">¥<%= @product.price %></p>
+
+          <% if user_signed_in? %>
+            <%= button_to "カートに入れる",
+                          cart_items_path(product_id: @product.id),
+                          method: :post,
+                          class: "btn btn-primary btn-lg btn-block mb-3" %>
+          <% else %>
+            <p class="text-muted">
+              カートに追加するにはログインが必要です。
+            </p>
+            <%= link_to "ログイン画面へ",
+                        new_user_session_path,
+                        class: "btn btn-outline-primary btn-block mb-2" %>
+            <%= link_to "新規会員登録",
+                        new_user_registration_path,
+                        class: "btn btn-outline-secondary btn-block" %>
+          <% end %>
+
+          <hr>
+
+          <p class="text-muted mb-1">
+            カテゴリ: <strong><%= @product.category %></strong>
+          </p>
+          <p class="text-muted">
+            商品ID: <%= @product.id %>
+          </p>
+
+          <%= link_to "一覧に戻る", root_path, class: "btn btn-link mt-3" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,4 +22,11 @@ class ProductsController < ApplicationController
   def pants
     @products = Product.where(category: "pants")
   end
+
+  def show
+    @product = Product.find(params[:id])
+
+    @product_images = []
+    @product_images << @product.image_url if @product.image_url.present?
+  end
 end
