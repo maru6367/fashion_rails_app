@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "contacts/new"
+  get "contacts/create"
  
   get "products/index"
   get "products/shirts"
@@ -32,5 +34,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     post "guest_sign_in", to: "users/sessions#guest_sign_in"
   end
+
+  get  "/contact", to: "contacts#new",    as: :contact
+  post "/contact", to: "contacts#create"
+
 
 end
