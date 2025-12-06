@@ -28,5 +28,11 @@ class ProductsController < ApplicationController
 
     @product_images = []
     @product_images << @product.image_url if @product.image_url.present?
-  end
+    
+    if user_signed_in?
+    @favorited = Favorite.exists?(user_id: current_user.id, product_id: @product.id)
+    else
+    @favorited = false
+    end
+  end 
 end

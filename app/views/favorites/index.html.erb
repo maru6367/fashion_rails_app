@@ -1,0 +1,41 @@
+<div class="container" style="margin-top: 100px;">
+  <h2 class="mb-4">お気に入り一覧</h2>
+
+  <% if @favorite_products.empty? %>
+    <p>お気に入りに登録された商品はありません。</p>
+    <%= link_to "商品を見に行く", root_path, class: "btn btn-primary" %>
+  <% else %>
+    <div class="row">
+      <% @favorite_products.each do |product| %>
+        <div class="col-md-3 mb-4">
+          <%= link_to product_path(product), class: "text-decoration-none text-reset" do %>
+            <div class="card h-100 shadow-sm hover-shadow">
+              <% main_image_url =
+                   if product.respond_to?(:product_images) && product.product_images.any?
+                     product.product_images.first.image_url
+                   else
+                     product.image_url
+                   end %>
+
+              <% if main_image_url.present? %>
+                <%= image_tag main_image_url, class: "card-img-top" %>
+              <% else %>
+                <img src="https://via.placeholder.com/400x300?text=No+Image"
+                     class="card-img-top"
+                     alt="No image">
+              <% end %>
+
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">¥<%= product.price %></p>
+                <p class="card-text">
+                  <small class="text-muted"><%= product.category %></small>
+                </p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

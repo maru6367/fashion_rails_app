@@ -56,6 +56,10 @@
     <!-- 右側：ログイン関連 -->
     <ul class="navbar-nav ml-auto mr-3">
 
+      <li class="nav-item">
+          <%= link_to "お気に入り", favorites_path, class: "nav-link" %>
+        </li>
+
       <% if user_signed_in? %>
         <!-- カートアイコン -->
         <li class="nav-item">
