@@ -35,4 +35,19 @@ class ProductsController < ApplicationController
     @favorited = false
     end
   end 
+  
+  def search
+    @query = params[:q].to_s.strip
+
+    if @query.present?
+    
+      @products = Product.where(
+        "name ILIKE :q OR category ILIKE :q OR description ILIKE :q",
+        q: "%#{@query}%"
+      )
+    else
+      @products = Product.none
+    end
+  end
+
 end
