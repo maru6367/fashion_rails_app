@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show]
+
   def index
     @products = Product.all
   end
@@ -23,24 +25,11 @@ class ProductsController < ApplicationController
     @products = Product.where(category: "pants")
   end
 
-  def show
-    @product = Product.find(params[:id])
-
-    @product_images = []
-    @product_images << @product.image_url if @product.image_url.present?
-    
-    if user_signed_in?
-    @favorited = Favorite.exists?(user_id: current_user.id, product_id: @product.id)
-    else
-    @favorited = false
-    end
-  end 
-  
+ 
   def search
     @query = params[:q].to_s.strip
 
     if @query.present?
-    
       @products = Product.where(
         "name ILIKE :q OR category ILIKE :q OR description ILIKE :q",
         q: "%#{@query}%"
@@ -50,4 +39,28 @@ class ProductsController < ApplicationController
     end
   end
 
+
+  def show
+    
+    @product = Product.find(params[:id])
+
+    
+    @product_images = @product.product_images.order(:position)
+
+    
+    if @product_images.blank? && @product.image_url.present?
+      @product_images = [
+        OpenStruct.new(image_url: @product.image_url)
+      ]
+    end
+
+ 
+    @favorited = user_signed_in? && current_user.favorites.exists?(product_id: @product.id)
+  end
+
+  private
+
+  def set_product
+    @product = Product.find(params[:id])
+  end
 end
