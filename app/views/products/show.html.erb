@@ -1,21 +1,24 @@
 <div class="container" style="margin-top: 100px;">
   <div class="row">
-    <!-- 左側：画像スライダー -->
+    <!-- 左側：画像スライダー＋商品説明 -->
     <div class="col-md-7">
       <% if @product_images.present? %>
         <div id="productCarousel" class="carousel slide mb-4" data-ride="carousel">
+
+          <!-- ドット -->
           <ol class="carousel-indicators">
-            <% @product_images.each_with_index do |_, index| %>
+            <% @product_images.each_with_index do |image, index| %>
               <li data-target="#productCarousel"
                   data-slide-to="<%= index %>"
                   class="<%= 'active' if index.zero? %>"></li>
             <% end %>
           </ol>
 
+          <!-- 画像本体 -->
           <div class="carousel-inner">
-            <% @product_images.each_with_index do |image_url, index| %>
+            <% @product_images.each_with_index do |image, index| %>
               <div class="carousel-item <%= 'active' if index.zero? %>">
-                <%= image_tag image_url,
+                <%= image_tag image.image_url,
                               class: "d-block w-100",
                               alt: @product.name %>
               </div>
@@ -41,6 +44,7 @@
         </div>
       <% end %>
 
+      <!-- 🟢 商品説明カード（ここが復活部分その1） -->
       <div class="card shadow-sm mb-4">
         <div class="card-body">
           <h3 class="card-title mb-3"><%= @product.name %></h3>
@@ -63,7 +67,7 @@
       </div>
     </div>
 
-    <!-- 右側：価格＋カート -->
+    <!-- 🟢 右側：価格+カート+お気に入り（ここが復活部分その2） -->
     <div class="col-md-5">
       <div class="card shadow-sm mb-4">
         <div class="card-body">
@@ -71,14 +75,13 @@
           <p class="display-4">¥<%= @product.price %></p>
 
           <% if user_signed_in? %>
-  
             <%= button_to "カートに入れる",
                           cart_items_path(product_id: @product.id),
                           method: :post,
                           class: "btn btn-primary btn-lg btn-block mb-3" %>
 
-            <% if @favorited %>
-              <% favorite = Favorite.find_by(user_id: current_user.id, product_id: @product.id) %>
+            <% if defined?(@favorited) && @favorited %>
+              <% favorite = current_user.favorites.find_by(product_id: @product.id) %>
               <%= button_to "お気に入りから外す",
                             favorite_path(favorite),
                             method: :delete,
@@ -89,10 +92,7 @@
                             method: :post,
                             class: "btn btn-outline-warning btn-block" %>
             <% end %>
-
-
           <% else %>
-        
             <p class="text-muted">
               カートやお気に入りに追加するにはログインが必要です。
             </p>

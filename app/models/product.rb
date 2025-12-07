@@ -5,5 +5,5 @@ class Product < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorited_users, through: :favorites, source: :user
-
+  has_many :product_images, dependent: :destroy
 end
