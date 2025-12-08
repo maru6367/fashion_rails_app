@@ -1,5 +1,10 @@
 # ファッションサイト　-- さまざまな種類のアイテムを扱う、アパレルブランドの商品を販売するwebサイト
 
+___
+
+**. サービス概要**
+___
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
