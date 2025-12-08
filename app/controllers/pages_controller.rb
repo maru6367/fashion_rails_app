@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @products = Product.all.order(created_at: :desc)
+     @products = Product.includes(:product_images).all
   end
 
   def support

@@ -11,3 +11,31 @@
   box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
   transform: translateY(-2px);
 }
+
+
+.card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+
+.card-img-wrapper .hover-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.card-img-wrapper:hover .hover-image {
+  opacity: 1;
+}
+
+.card-img-wrapper:hover .primary-image {
+  opacity: 0;
+}
