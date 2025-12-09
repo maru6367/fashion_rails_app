@@ -7,6 +7,8 @@
 _ _ _
 
 **2.サービス画像**
+
+<img src="app/assets/images/home.png" width="700">
 _ _ _
 
 **3.サービスのurl**
