@@ -1,7 +1,8 @@
 # ファッションサイト　-- さまざまな種類のアイテムを扱う、アパレルブランドの商品を販売するwebサイト
 
----
-**. サービス概要**
+_ _ _
+
+*サービスの概要
 ___
 
 This README would normally document whatever steps are necessary to get the
