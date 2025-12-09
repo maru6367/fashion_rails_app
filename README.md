@@ -13,30 +13,40 @@ _ _ _
 
 _ _ _
 
-**3.サービスの概要**
+**4.サービスの概要**
 
-こちらのwebサイトは、アパレル商品を扱う会社様向けのwebサイトになります。アパレルの商品の一覧と、それぞれのジャンルに沿った商品の一覧を選択できます。
+
 _ _ _
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**5.開発背景**
 
-Things you may want to cover:
 
-* Ruby version
+_ _ _
 
-* System dependencies
 
-* Configuration
+**6.機能**
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+_ _ _
 
-* Services (job queues, cache servers, search engines, etc.)
+**7.主な使用技術**
 
-* Deployment instructions
+_ _ _
 
-* ...
+**8.ER図**
+
+_ _ _
+
+**9.今後の展望**
+
+
+
+
+
+
+
+
+
+
+
