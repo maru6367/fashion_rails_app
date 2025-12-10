@@ -108,9 +108,8 @@ _ _ _
 _ _ _
 **8.ER図**
 
-![ER図](https://raw.githubusercontent.com/ユーザー名/リポジトリ名/ブランチ名/app/assets/images/erd.png)
-_ _ _
-
+_![ER図](app/assets/images/erd.png)
+_ _ 
 **9.今後の展望**
 
 ### 直近の修正予定
