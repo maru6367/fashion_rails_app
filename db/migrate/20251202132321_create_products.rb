@@ -1,12 +1,13 @@
-class CreateFavorites < ActiveRecord::Migration[7.0] 
+class CreateProducts < ActiveRecord::Migration[7.2]
   def change
-    create_table :favorites do |t|
-      t.references :user, null: false, foreign_key: true
-      t.references :product, null: false, foreign_key: true
+    create_table :products do |t|
+      t.string  :name,        null: false
+      t.text    :description
+      t.integer :price,       null: false
+      t.string  :category,    null: false
+      t.string  :image_url
 
       t.timestamps
     end
-
-    add_index :favorites, [:user_id, :product_id], unique: true
   end
 end
